@@ -12,7 +12,7 @@ LicenseManager.setLicenseKey('Enter your license key');
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   @ViewChild('agGrid') agGrid: AgGridAngular;
 
   title = 'app';
@@ -23,17 +23,16 @@ export class AppComponent implements OnInit {
     {headerName: 'Price', field: 'price'}
   ];
 
-
-  rowData: any;
+  rowData = [
+    { make: "Toyota", model: "Celica", price: 35000 },
+    { make: "Ford", model: "Mondeo", price: 32000 },
+    { make: "Porsche", model: "Boxter", price: 72000 }
+  ];
 
   modules = AllModules;
 
   constructor(private http: HttpClient) {
 
-  }
-
-  ngOnInit() {
-    this.rowData = this.http.get('https://raw.githubusercontent.com/ag-grid/ag-grid/master/grid-packages/ag-grid-docs/src/sample-data/rowData.json');
   }
 
   getSelectedRows() {
